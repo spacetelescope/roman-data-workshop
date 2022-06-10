@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v3
         with:
-          path: ~/conda_pkgs_dir
+          path: |
+            ~/conda_pkgs_dir
+            /usr/share/miniconda/envs/test
           key:
             conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}
       - uses: conda-incubator/setup-miniconda@v2
@@ -30,7 +32,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v3
         with:
-          path: ~/conda_pkgs_dir
+          path: |
+            ~/conda_pkgs_dir
+            /usr/share/miniconda/envs/test
           key:
             conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}
       - uses: conda-incubator/setup-miniconda@v2
