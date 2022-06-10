@@ -1,0 +1,22 @@
+name: roman-data-workshop-env
+
+dependencies:
+  - jupyter
+  - notebook >= 6.0
+  - ipython >= 7.2
+  - matplotlib >= 3.2
+  - numpy >= 1.16
+  - packaging
+  - pandas >= 1.0
+  - pip
+  - pytest
+  - pytest-xdist
+  - python >= 3.9
+  - pyyaml
+  - scipy >= 1.5
+  - pip:
+      - asdf
+      - asdf-astropy
+      - asdf-standard
+      - astropy >= 4.2
+      - gwcs >= 0.16
