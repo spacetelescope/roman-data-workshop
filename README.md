@@ -1,4 +1,4 @@
-# Setup and Installation Instructions for Workshop
+# Nancy Grace Roman Telescope Calibration (`romancal`) Data Workshop
 
 To run all the workshop notebooks on your own computer, please be sure your machine is configured with the packages in
 the
@@ -131,7 +131,7 @@ Now navigate to this directory in the terminal:
 cd roman-data-workshop
 ```
 
-And finally, on any platform, to install and activate the `spacetelescope` environment, type:
+And finally, on any platform, to install and activate the `roman-data-workshop-env` environment, type:
 
 ```shell
 conda env create --file 00_install/environment.yml
