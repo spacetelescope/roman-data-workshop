@@ -1,4 +1,4 @@
-# Nancy Grace Roman Telescope Calibration (`romancal`) Data Workshop
+# Nancy Grace Roman Telescope Data Workshop
 
 To run all the workshop notebooks on your own computer, please be sure your machine is configured with the packages in
 the
