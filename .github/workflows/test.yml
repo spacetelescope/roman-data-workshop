@@ -7,6 +7,12 @@ on:
       - '**/*.yml'
       - '**/*.yaml'
       - '**/*.py'
+  pull_request:
+    paths:
+      - '**/*.ipynb'
+      - '**/*.yml'
+      - '**/*.yaml'
+      - '**/*.py'
 
 defaults:
   run:
