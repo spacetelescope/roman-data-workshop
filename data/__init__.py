@@ -1,6 +1,8 @@
 import os.path
 import shutil
 import data
+from astropy.utils.data import download_file
+
 
 data_dir = data.__path__[0]
 
