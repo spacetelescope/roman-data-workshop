@@ -1,3 +1,7 @@
+# data files
+*.asdf
+*.fits
+
 # Compiled files
 *.py[cod]
 *.a
