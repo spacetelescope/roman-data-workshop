@@ -25,9 +25,9 @@ MINIMUM_DEPENDENCY_PATTERN = re.compile(r".*>=?\s*([\d\w.]+).*")
 
 
 def parse_dependency(
-        dependency: str,
-        dependencies: Dict[str, Tuple[str, str]],
-        version_specification_pattern: re.Pattern = DEPENDENCY_PATTERN,
+    dependency: str,
+    dependencies: Dict[str, Tuple[str, str]],
+    version_specification_pattern: re.Pattern = DEPENDENCY_PATTERN,
 ):
     match = re.match(version_specification_pattern, dependency)
     if match is not None:
@@ -56,7 +56,7 @@ INSTALLED_PACKAGES = {
 
 
 def check_package(
-        package_name: str, minimum_version: Version = None, verbose: bool = True
+    package_name: str, minimum_version: Version = None, verbose: bool = True
 ) -> bool:
     if package_name in INSTALLED_PACKAGES:
         installed_version = Version(INSTALLED_PACKAGES[package_name])
