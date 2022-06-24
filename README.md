@@ -190,7 +190,16 @@ and you can update with `conda update <package>`:
 conda update numpy
 ```
 
-## 8. Starting Jupyter Notebook
+## 8. Download Data
+
+Making sure to activate the `conda` environment (`conda activate roman-data-workshop-env`), run the following to
+download the data files used by these notebooks:
+
+```shell
+python data/download.py
+```
+
+## 9. Starting Jupyter Notebook
 
 Making sure your terminal is in the `roman-data-workshop` directory (you can use `pwd` to check), you can then start the
 Jupyter server on your local computer, with which you can view the Jupyter notebooks:
