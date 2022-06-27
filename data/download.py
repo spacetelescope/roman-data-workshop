@@ -20,11 +20,13 @@ REMOTE_PATHS = [
 LOCAL_DIRECTORY = Path(__file__).parent
 
 
-def download_data():
+def download_data(overwrite: bool = False):
     for remote_path in REMOTE_PATHS:
-        print(f'downloading "{remote_path}"')
-        filename = download_file(REMOTE_URL + remote_path)
-        shutil.move(filename, LOCAL_DIRECTORY / Path(remote_path).name)
+        local_path = LOCAL_DIRECTORY / Path(remote_path).name
+        if overwrite or not local_path.exists():
+            print(f'downloading "{remote_path}"')
+            filename = download_file(REMOTE_URL + remote_path)
+            shutil.move(filename, local_path)
 
     print("Done downloading files")
 

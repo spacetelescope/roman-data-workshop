@@ -19,8 +19,8 @@ defaults:
     shell: bash -l {0}
 
 jobs:
-  verify_install:
-    name: verify installed packages
+  build:
+    name: build environment
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,17 +28,22 @@ jobs:
         with:
           path: |
             ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/test
-          key:
-            conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}
+            /usr/share/miniconda/envs/roman-data-workshop-env
+          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
       - uses: conda-incubator/setup-miniconda@v2
         with:
+          activate-environment: roman-data-workshop-env
           environment-file: 00_install/environment.yml
           use-only-tar-bz2: true
       - run: python ./00_install/verify_install.py
-  run_notebooks:
-    name: run notebooks
-    needs: [ verify_install ]
+      - run: conda env export > roman-data-workshop-env-${{ github.sha }}.yml
+      - uses: actions/upload-artifact@v3.1.0
+        with:
+          name: roman-data-workshop-env-${{ github.sha }}.yml
+          path: roman-data-workshop-env-${{ github.sha }}.yml
+  data:
+    name: download data
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -46,12 +51,39 @@ jobs:
         with:
           path: |
             ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/test
-          key:
-            conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}
+            /usr/share/miniconda/envs/roman-data-workshop-env
+          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
       - uses: conda-incubator/setup-miniconda@v2
         with:
+          activate-environment: roman-data-workshop-env
           environment-file: 00_install/environment.yml
           use-only-tar-bz2: true
+      - uses: actions/cache@v3
+        with:
+          path: data/
+          key: data-${{ hashFiles('data/download.py') }}
+      - run: python data/download.py
+  test:
+    name: run notebooks
+    needs: [ build, data ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/conda_pkgs_dir
+            /usr/share/miniconda/envs/roman-data-workshop-env
+          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: roman-data-workshop-env
+          environment-file: 00_install/environment.yml
+          use-only-tar-bz2: true
+      - uses: actions/cache@v3
+        with:
+          path: data/
+          key: data-${{ hashFiles('data/download.py') }}
+      - run: python data/download.py
       - run: pip install nbcollection
       - run: python -m nbcollection execute .
