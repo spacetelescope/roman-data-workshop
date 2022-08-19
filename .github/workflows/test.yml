@@ -23,7 +23,7 @@ jobs:
     name: build environment
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/cache@v3
         with:
           path: |
@@ -46,29 +46,38 @@ jobs:
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        id: data_cache
+        with:
+          path: data/
+          key: data-${{ hashFiles('data/download.py') }}
       - uses: actions/cache@v3
         with:
           path: |
             ~/conda_pkgs_dir
             /usr/share/miniconda/envs/roman-data-workshop-env
           key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
+        if: steps.data_cache.outputs.cache-hit != 'true'
       - uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: roman-data-workshop-env
           environment-file: 00_install/environment.yml
           use-only-tar-bz2: true
-      - uses: actions/cache@v3
-        with:
-          path: data/
-          key: data-${{ hashFiles('data/download.py') }}
+        if: steps.data_cache.outputs.cache-hit != 'true'
       - run: python data/download.py
+        if: steps.data_cache.outputs.cache-hit != 'true'
   test:
     name: run notebooks
     needs: [ build, data ]
     runs-on: ubuntu-latest
+    env:
+      CRDS_SERVER_URL: https://roman-crds-test.stsci.edu
+      CRDS_PATH: ~/crds_cache
+      CRDS_CLIENT_RETRY_COUNT: 3
+      CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/cache@v3
         with:
           path: |
@@ -80,6 +89,15 @@ jobs:
           activate-environment: roman-data-workshop-env
           environment-file: 00_install/environment.yml
           use-only-tar-bz2: true
+      - run: echo "::set-output name=crds_context::$(crds list --operational-context)"
+        id: crds_context
+      - uses: actions/cache@v3
+        with:
+          path: ${{ env.CRDS_PATH }}
+          key: crds-jwst-datamodels-${{ steps.crds_context.outputs.crds_context }}
+        if: steps.crds_context.outputs.crds_context != ''
+      - run: crds sync --contexts ${{ steps.crds_context.outputs.crds_context }}
+        if: steps.crds_context.outputs.crds_context != ''
       - uses: actions/cache@v3
         with:
           path: data/
