@@ -4,7 +4,7 @@ dependencies:
   - jupyter
   - notebook >= 6.0
   - matplotlib >= 3.2
-  - numpy >= 1.16
+  - numpy >= 1.20
   - packaging
   - pip
   - python >= 3.9
@@ -13,7 +13,7 @@ dependencies:
       - asdf
       - asdf-astropy
       - asdf-standard
-      - astropy >= 4.2
+      - astropy >= 5.0.4
       - gwcs >= 0.16
       - romancal
       - jwst >= 1.7.0
