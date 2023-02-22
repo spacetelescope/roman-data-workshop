@@ -5,12 +5,12 @@ from astropy.utils.data import download_file
 
 REMOTE_URL = "https://data.science.stsci.edu/redirect/Roman/Roman_Data_Workshop/"
 REMOTE_PATHS = [
-    "ExampleData/roman_wfi_dark_0227.asdf",
-    "ExampleData/roman_wfi_linearity_0055.asdf",
-    "ExampleData/roman_wfi_saturation_0078.asdf",
+    "ExampleData/roman_wfi_dark_0427.asdf",
+    "ExampleData/roman_wfi_linearity_0179.asdf",
+    "ExampleData/roman_wfi_saturation_0193.asdf",
     "ExampleData/roman_wfi_flat_0227.asdf",
-    "ExampleData/roman_wfi_readnoise_0189.asdf",
-    "ExampleData/roman_wfi_gain_0056.asdf",
+    "ExampleData/roman_wfi_readnoise_0368.asdf",
+    "ExampleData/roman_wfi_gain_0169.asdf",
     "ExampleData/roman_wfi_mask_0074.asdf",
     "ExampleData/roman_wfi_photom_0056.asdf",
     "ExampleData/roman_wfi_distortion_0008.asdf",
