@@ -16,7 +16,7 @@ on:
 
 defaults:
   run:
-    shell: bash -el {0}
+    shell: bash -l {0}
 
 jobs:
   build:
