@@ -76,7 +76,7 @@ jobs:
           cache-environment: true
           cache-downloads: true
           init-shell: bash
-      - run: echo "::set-output name=crds_context::$(crds list --operational-context)"
+      - run: echo "name=crds_context::$(crds list --operational-context)" >> $GITHUB_OUTPUT
         id: crds_context
       - uses: actions/cache@v3
         with:
