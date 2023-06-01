@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: conda-incubator/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
@@ -48,7 +48,7 @@ jobs:
         with:
           path: data/
           key: data-${{ hashFiles('data/download.py') }}
-      - uses: conda-incubator/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
@@ -69,7 +69,7 @@ jobs:
       CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
     steps:
       - uses: actions/checkout@v3
-      - uses: conda-incubator/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
