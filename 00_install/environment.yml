@@ -16,4 +16,4 @@ dependencies:
       - astropy >= 5.0.4
       - gwcs >= 0.16
       - romancal
-      - jwst >= 1.7.0
+      - jwst >= 1.10.2
