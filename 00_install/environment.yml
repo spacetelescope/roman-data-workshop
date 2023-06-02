@@ -11,9 +11,9 @@ dependencies:
   - pyyaml
   - pip:
       - asdf
-      - asdf-astropy
+      - asdf-astropy >= 0.4.0
       - asdf-standard
-      - astropy >= 5.0.4
-      - gwcs >= 0.16
-      - romancal
-      - jwst >= 1.7.0
+      - astropy >= 5.3
+      - gwcs >= 0.18.3
+      - stpipe
+      - romancal >= 0.11
