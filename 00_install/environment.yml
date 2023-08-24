@@ -16,4 +16,4 @@ dependencies:
       - astropy >= 5.3
       - gwcs >= 0.18.3
       - stpipe
-      - romancal >= 0.11
+      - romancal >= 0.12
