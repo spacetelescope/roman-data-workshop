@@ -74,8 +74,8 @@ jobs:
     needs: [ build, data, crds_contexts ]
     runs-on: ubuntu-latest
     env:
-      CRDS_SERVER_URL: https://roman-crds-test.stsci.edu
-      CRDS_PATH: ~/crds_cache
+      CRDS_SERVER_URL: https://roman-crds.stsci.edu
+      CRDS_PATH: /tmp/data/crds_cache
       CRDS_CLIENT_RETRY_COUNT: 3
       CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
     steps:
@@ -94,7 +94,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ env.CRDS_PATH }}
-          key: crds-jwst-datamodels-${{ needs.crds_contexts.outputs.roman }}
+          key: crds-${{ needs.crds_contexts.outputs.roman }}
       - run: crds sync --contexts ${{ needs.crds_contexts.outputs.roman }}
       - uses: actions/cache@v3
         with:
