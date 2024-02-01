@@ -23,21 +23,21 @@ jobs:
     name: build environment
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/conda_pkgs_dir
             /usr/share/miniconda/envs/roman-data-workshop-env
           key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: roman-data-workshop-env
           environment-file: 00_install/environment.yml
           use-only-tar-bz2: true
       - run: python ./00_install/verify_install.py
       - run: conda env export > roman-data-workshop-env-${{ github.sha }}.yml
-      - uses: actions/upload-artifact@v3.1.0
+      - uses: actions/upload-artifact@v4
         with:
           name: roman-data-workshop-env-${{ github.sha }}.yml
           path: roman-data-workshop-env-${{ github.sha }}.yml
@@ -46,20 +46,20 @@ jobs:
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         id: data_cache
         with:
           path: data/
           key: data-${{ hashFiles('data/download.py') }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: |
             ~/conda_pkgs_dir
             /usr/share/miniconda/envs/roman-data-workshop-env
           key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
         if: steps.data_cache.outputs.cache-hit != 'true'
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: roman-data-workshop-env
           environment-file: 00_install/environment.yml
@@ -79,24 +79,24 @@ jobs:
       CRDS_CLIENT_RETRY_COUNT: 3
       CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/conda_pkgs_dir
             /usr/share/miniconda/envs/roman-data-workshop-env
           key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: roman-data-workshop-env
           environment-file: 00_install/environment.yml
           use-only-tar-bz2: true
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CRDS_PATH }}
           key: crds-${{ needs.crds_contexts.outputs.roman }}
       - run: crds sync --contexts ${{ needs.crds_contexts.outputs.roman }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: data/
           key: data-${{ hashFiles('data/download.py') }}
