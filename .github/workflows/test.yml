@@ -32,6 +32,8 @@ jobs:
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
+          create-args: >-
+            conda
           cache-environment: true
           cache-downloads: true
           init-shell: bash
@@ -56,6 +58,8 @@ jobs:
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
+          create-args: >-
+            conda
           cache-environment: true
           cache-downloads: true
           init-shell: bash
@@ -77,6 +81,8 @@ jobs:
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
+          create-args: >-
+            conda
           cache-environment: true
           cache-downloads: true
           init-shell: bash
