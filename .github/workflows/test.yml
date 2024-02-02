@@ -14,27 +14,41 @@ on:
       - '**/*.yaml'
       - '**/*.py'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 defaults:
   run:
-    shell: bash -l {0}
+    shell: micromamba-shell {0}
 
 jobs:
+  date:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+        id: date        
+        shell: bash
+    outputs:
+      date: ${{ steps.date.outputs.date }}
   build:
+    needs: [ date ]
     name: build environment
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: mamba-org/setup-micromamba@v1
         with:
-          path: |
-            ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/roman-data-workshop-env
-          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: roman-data-workshop-env
+          environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
-          use-only-tar-bz2: true
+          create-args: >-
+            conda
+          cache-downloads: true
+          cache-downloads-key: downloads-${{ needs.date.outputs.date }}
+          cache-environment: true
+          cache-environment-key: environment-${{ needs.date.outputs.date }}
+          init-shell: none
+          generate-run-shell: true
       - run: python ./00_install/verify_install.py
       - run: conda env export > roman-data-workshop-env-${{ github.sha }}.yml
       - uses: actions/upload-artifact@v3.1.0
@@ -42,8 +56,8 @@ jobs:
           name: roman-data-workshop-env-${{ github.sha }}.yml
           path: roman-data-workshop-env-${{ github.sha }}.yml
   data:
+    needs: [ date, build ]
     name: download data
-    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -52,24 +66,24 @@ jobs:
         with:
           path: data/
           key: data-${{ hashFiles('data/download.py') }}
-      - uses: actions/cache@v3
+      - uses: mamba-org/setup-micromamba@v1
         with:
-          path: |
-            ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/roman-data-workshop-env
-          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-        if: steps.data_cache.outputs.cache-hit != 'true'
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: roman-data-workshop-env
+          environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
-          use-only-tar-bz2: true
+          create-args: >-
+            conda
+          cache-downloads: true
+          cache-downloads-key: downloads-${{ needs.date.outputs.date }}
+          cache-environment: true
+          cache-environment-key: environment-${{ needs.date.outputs.date }}
+          init-shell: none
+          generate-run-shell: true
         if: steps.data_cache.outputs.cache-hit != 'true'
       - run: python data/download.py
         if: steps.data_cache.outputs.cache-hit != 'true'
   test:
+    needs: [ date, build, data ]
     name: run notebooks
-    needs: [ build, data ]
     runs-on: ubuntu-latest
     env:
       CRDS_SERVER_URL: https://roman-crds-test.stsci.edu
@@ -78,18 +92,19 @@ jobs:
       CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: mamba-org/setup-micromamba@v1
         with:
-          path: |
-            ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/roman-data-workshop-env
-          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: roman-data-workshop-env
+          environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
-          use-only-tar-bz2: true
-      - run: echo "::set-output name=crds_context::$(crds list --operational-context)"
+          create-args: >-
+            conda
+          cache-downloads: true
+          cache-downloads-key: downloads-${{ needs.date.outputs.date }}
+          cache-environment: true
+          cache-environment-key: environment-${{ needs.date.outputs.date }}
+          init-shell: none
+          generate-run-shell: true
+      - run: echo "name=crds_context::$(crds list --operational-context)" >> $GITHUB_OUTPUT
         id: crds_context
       - uses: actions/cache@v3
         with:
