@@ -5,8 +5,11 @@ from astropy.utils.data import download_file
 
 REMOTE_URL = "https://data.science.stsci.edu/redirect/Roman/Roman_Data_Workshop/"
 REMOTE_PATHS = [
-    "ExampleData/r0000101001001001001_01101_0001_WFI01_uncal.asdf",
-    "ExampleData/r0000101001001001001_01101_0001_WFI01_cal.asdf",
+    "ExampleData/Build12/r0000101001001001001_01101_0001_WFI01_uncal.asdf",
+    "ExampleData/Build12/r0000101001001001001_01101_0001_WFI01_cal.asdf",
+    "ExampleData/Build12/r0000101001001001001_01101_0001_WFI16_uncal.asdf",
+    "ExampleData/Build12/r0000101001001001001_01101_0001_WFI16_cal.asdf",
+    "ExampleData/Build12/r0000201001001001001_01101_0001_WFI01_cal.asdf",
     "ExampleData/jw01448013001_02105_00001_nis_rate.fits",
     "ExampleData/jw01448013001_02106_00001_nis_rate.fits",
     "ExampleData/jw01448013001_02106_00001_nis_cat.ecsv",
