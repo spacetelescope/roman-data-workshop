@@ -90,7 +90,7 @@ if __name__ == "__main__":
             errors.append(package_name)
     if any(errors):
         print(
-            f"You must resolve {sum(errors)} errors (above) before running the tutorials."
+            f"You must resolve {len(errors)} errors (above) before running the tutorials."
         )
         exit(1)
     else:
