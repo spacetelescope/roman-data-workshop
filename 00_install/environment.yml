@@ -11,7 +11,7 @@ dependencies:
   - python >= 3.9
   - pyyaml
   - pip:
-      - asdf-standard
+      - asdf_standard
       - asdf
       - asdf-astropy
       - astropy >= 5.3
