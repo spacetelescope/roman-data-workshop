@@ -1,5 +1,8 @@
 import shutil
 from pathlib import Path
+import requests
+
+
 
 from astropy.utils.data import download_file
 
@@ -19,6 +22,7 @@ REMOTE_PATHS = [
     "ExampleData/jwst_niriss_wavelengthrange_0002.asdf",
 ]
 LOCAL_DIRECTORY = Path(__file__).parent
+WEBBPSF_DATA = Path('./data')/'Webbpsf-data-LATEST.tar.gz'
 
 
 def download_data(overwrite: bool = False):
@@ -29,8 +33,13 @@ def download_data(overwrite: bool = False):
             filename = download_file(REMOTE_URL + remote_path)
             shutil.move(filename, local_path)
 
-    print("Done downloading files")
+    response = requests.get('https://stsci.box.com/shared/static/qxpiaxsjwo15ml6m4pkhtk36c9jgj70k.gz')
 
+    with open(WEBBPSF_DATA, 'wb') as f:
+        f.write(response.content)
+
+    print("Done downloading files")
 
 if __name__ == "__main__":
     download_data()
+    shutil.unpack_archive(WEBBPSF_DATA, Path('./data'))
