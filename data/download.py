@@ -16,6 +16,7 @@ REMOTE_PATHS = [
     "ExampleData/Build14/r0099101001001001001_r274dp63x31y81_visit_F158_prompt_i2d.asdf",
     "ExampleData/Build14/r0099101001001001001_r274dp63x31y81_visit_F158_prompt_cat.asdf",
     "ExampleData/Build14/r0099101001001001001_r274dp63x31y81_visit_F158_prompt_segm.asdf",
+    "ExampleData/Build14/r0000101001001001001_01101_0001_WFI01_cat.asdf",
     "ExampleData/jw01448013001_02105_00001_nis_rate.fits",
     "ExampleData/jw01448013001_02106_00001_nis_rate.fits",
     "ExampleData/jw01448013001_02106_00001_nis_cat.ecsv",
