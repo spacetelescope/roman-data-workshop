@@ -5,16 +5,17 @@ dependencies:
   - notebook >= 6.0
   - matplotlib >= 3.2
   - ipympl
-  - numpy >= 1.20
+  - numpy >= 2.0
   - packaging
   - pip
   - python == 3.11
   - pyyaml
   - pip:
       - asdf_standard
-      - asdf
-      - asdf-astropy
-      - astropy >= 6.0
-      - gwcs >= 0.20
+      - asdf == 4.1.0
+      - asdf-astropy == 0.7.1
+      - astropy >= 7.0
+      - gwcs >= 0.24
       - stpipe
-      - romancal >= 0.17.0
+      - romancal >= 0.18.0
+      - webbpsf == 1.5.0
