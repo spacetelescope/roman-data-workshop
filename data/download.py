@@ -21,7 +21,7 @@ REMOTE_PATHS = [
     "ExampleData/Build17/r0000101001001001001_p_v01001001001_r274dp63x31y81_f158_coadd.asdf",
     "ExampleData/Build17/r0000101001001001001_p_v01001001001_r274dp63x31y82_f158_coadd.asdf",
     "ExampleData/Build17/r0000101001001001001_p_v01001001001_r274dp63x32y80_f158_coadd.asdf",
-    "ExampleDara/Build17/r0000101001001001001_p_v01001001001_r274dp63x32y81_f158_coadd.asdf",
+    "ExampleData/Build17/r0000101001001001001_p_v01001001001_r274dp63x32y81_f158_coadd.asdf",
     "ExampleData/Build16/new_distortion.asdf",
     "ExampleData/Build17/r0000101001001001001_p_v01001001001_r274dp63x31y80_f158_cat.asdf",
     "ExampleData/Build17/r0000101001001001001_p_v01001001001_r274dp63x31y81_f158_cat.asdf",
