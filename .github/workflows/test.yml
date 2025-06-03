@@ -70,7 +70,7 @@ jobs:
     needs: [ build, data ]
     runs-on: ubuntu-latest
     env:
-      CRDS_SERVER_URL: https://roman-crds-test.stsci.edu
+      CRDS_SERVER_URL: https://roman-crds.stsci.edu
       CRDS_PATH: ~/crds_cache
       CRDS_CLIENT_RETRY_COUNT: 3
       CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
