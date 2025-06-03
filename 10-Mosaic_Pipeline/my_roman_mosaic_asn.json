@@ -1,0 +1,24 @@
+{
+    "asn_type": "None",
+    "asn_rule": "DMS_ELPP_Base",
+    "version_id": null,
+    "code_version": "0.19.0",
+    "target": "",
+    "degraded_status": "No known degraded exposures in association.",
+    "program": "noprogram",
+    "constraints": "No constraints",
+    "asn_id": "a3001",
+    "asn_pool": "none",
+    "skycell_wcs_info": "none",
+    "products": [
+        {
+            "name": "my_roman_mosaic",
+            "members": [
+                {
+                    "expname": "../data/r0000101001001001001_0001_wfi01_f158_cal.asdf",
+                    "exptype": "science"
+                }
+            ]
+        }
+    ]
+}
