@@ -60,7 +60,7 @@ REMOTE_PATHS = [
     "ExampleData/jwst_niriss_wavelengthrange_0002.asdf",
 ]
 LOCAL_DIRECTORY = Path(__file__).parent
-STPSF_DATA = Path('../data')/'stpsf-data-LATEST.tar.gz'
+STPSF_DATA = Path('./data')/'stpsf-data-LATEST.tar.gz'
 
 
 def download_data(overwrite: bool = False):
@@ -80,4 +80,4 @@ def download_data(overwrite: bool = False):
 
 if __name__ == "__main__":
     download_data()
-    shutil.unpack_archive(STPSF_DATA, Path('../data'))
+    shutil.unpack_archive(STPSF_DATA, Path('./data'))
