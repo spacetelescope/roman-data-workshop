@@ -5,17 +5,31 @@ dependencies:
   - notebook >= 6.0
   - matplotlib >= 3.2
   - ipympl
+  - jsonschema >=4.8
   - numpy >= 2.0
+  - matplotlib
   - packaging
+  - pandas >= 2.0.0
+  - photutils >=2.3.0
   - pip
+  - pyarrow >= 10.0.1
   - python == 3.11
   - pyyaml
+  - requests >=2.26
+  - scipy >=1.14.1
   - pip:
       - asdf_standard
-      - asdf >= 4.1.0
+      - asdf >= 4.1.0,<6
       - asdf-astropy == 0.8.0
       - astropy >= 7.0
-      - gwcs >= 0.25.2
-      - stpipe >=0.10.0,<0.11.0
-      - romancal >= 0.20.0
-      - stpsf >= 2.0.0
+      - crds >=13.0.2
+      - drizzle >= 2.1.1,<2.2
+      - jwst
+      - gwcs >= 0.25.2,<0.27.0
+      - stcal >=1.15.1,<1.16.0
+      - stpipe >=0.11.0,<0.12.0
+      - roman_datamodels >=0.28.0,<0.29.0
+      - romancal >= 0.21.0
+      - romanisim >=0.11.1,<0.12
+      - spherical_geometry >=1.3.3,<1.4
+      - stsci.imagestats >=1.8.3,<1.9
