@@ -8,47 +8,47 @@ from astropy.utils.data import download_file
 
 REMOTE_URL = "https://data.science.stsci.edu/redirect/Roman/Roman_Data_Workshop/"
 REMOTE_PATHS = [
-    "ExampleData/Build19/r0000101001001001001_0001_wfi01_uncal.asdf",
-    "ExampleData/Build19/r0000101001001001001_0001_wfi01_cal.asdf",
-    "ExampleData/Build19/r0000101001001001001_0001_wfi01_cat.parquet",
-    "ExampleData/Build19/r0000101001001001001_0001_wfi01_wcs.asdf",
-    "ExampleData/Build19/r0000101001001001001_0001_wfi01_segm.asdf",
+    "ExampleData/Build20/r0000101001001001001_0001_wfi01_f158_uncal.asdf",
+    "ExampleData/Build20/r0000101001001001001_0001_wfi01_f158_cal.asdf",
+    "ExampleData/Build20/r0000101001001001001_0001_wfi01_f158_cat.parquet",
+    "ExampleData/Build20/r0000101001001001001_0001_wfi01_f158_wcs.asdf",
+    "ExampleData/Build20/r0000101001001001001_0001_wfi01_f158_segm.asdf",
     
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y48_f158_asn.json",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y49_f158_asn.json",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y50_f158_asn.json",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y48_f158_asn.json",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y49_f158_asn.json",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y50_f158_asn.json",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y48_f158_asn.json",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y49_f158_asn.json",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y50_f158_asn.json",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y48_f158_asn.json",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y49_f158_asn.json",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y50_f158_asn.json",
     
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y48_f158_coadd.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y49_f158_coadd.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y50_f158_coadd.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y48_f158_coadd.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y49_f158_coadd.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y50_f158_coadd.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y48_f158_coadd.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y49_f158_coadd.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y50_f158_coadd.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y48_f158_coadd.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y49_f158_coadd.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y50_f158_coadd.asdf",
     
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y48_f158_cat.parquet",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y49_f158_cat.parquet",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y50_f158_cat.parquet",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y48_f158_cat.parquet",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y49_f158_cat.parquet",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y50_f158_cat.parquet",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y48_f158_cat.parquet",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y49_f158_cat.parquet",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y50_f158_cat.parquet",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y48_f158_cat.parquet",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y49_f158_cat.parquet",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y50_f158_cat.parquet",
     
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y48_f158_segm.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y49_f158_segm.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x69y50_f158_segm.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y48_f158_segm.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y49_f158_segm.asdf",
-    "ExampleData/Build19/r00001_p_v01001001001001_270p65x70y50_f158_segm.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y48_f158_segm.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y49_f158_segm.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x69y50_f158_segm.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y48_f158_segm.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y49_f158_segm.asdf",
+    "ExampleData/Build20/r00001_p_v01001001001001_270p65x70y50_f158_segm.asdf",
     
-    "ExampleData/Build19/r0000201001001001001_0001_wfi01_grism_uncal.asdf",
-    "ExampleData/Build19/r0000201001001001001_0001_wfi01_grism_cal.asdf",
-    "ExampleData/Build19/r0000201001001001001_0001_wfi01_grism_wcs.asdf",
+    "ExampleData/Build20/r0000201001001001001_0001_wfi01_grism_uncal.asdf",
+    "ExampleData/Build20/r0000201001001001001_0001_wfi01_grism_cal.asdf",
+    "ExampleData/Build20/r0000201001001001001_0001_wfi01_grism_wcs.asdf",
     
-    "ExampleData/Build19/r0000301001001001001_0001_wfi01_prism_uncal.asdf",
-    "ExampleData/Build19/r0000301001001001001_0001_wfi01_prism_cal.asdf",
-    "ExampleData/Build19/r0000301001001001001_0001_wfi01_prism_wcs.asdf",
+    "ExampleData/Build20/r0000301001001001001_0001_wfi01_prism_uncal.asdf",
+    "ExampleData/Build20/r0000301001001001001_0001_wfi01_prism_cal.asdf",
+    "ExampleData/Build20/r0000301001001001001_0001_wfi01_prism_wcs.asdf",
     
     "ExampleData/Build16/new_distortion.asdf",
     "ExampleData/jw01448013001_02105_00001_nis_rate.fits",
@@ -60,7 +60,6 @@ REMOTE_PATHS = [
     "ExampleData/jwst_niriss_wavelengthrange_0002.asdf",
 ]
 LOCAL_DIRECTORY = Path(__file__).parent
-STPSF_DATA = Path('./data')/'stpsf-data-LATEST.tar.gz'
 
 
 def download_data(overwrite: bool = False):
@@ -71,13 +70,7 @@ def download_data(overwrite: bool = False):
             filename = download_file(REMOTE_URL + remote_path)
             shutil.move(filename, local_path)
 
-    response = requests.get('https://stsci.box.com/shared/static/3hzmbarac5yxjt6x7gn17vz02k7c8z1d.gz')
-
-    with open(STPSF_DATA, 'wb') as f:
-        f.write(response.content)
-
     print("Done downloading files")
 
 if __name__ == "__main__":
     download_data()
-    shutil.unpack_archive(STPSF_DATA, Path('./data'))
