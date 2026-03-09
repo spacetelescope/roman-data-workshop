@@ -20,7 +20,7 @@ from packaging.version import Version
 with open(Path(__file__).parent / "environment.yml") as environment_file:
     environment = yaml.safe_load(environment_file)
 
-DEPENDENCY_PATTERN = re.compile(r"([\w\d.]+)\s*((?:[<>=~]=?|\^)\s*[\d\w.]*)?")
+DEPENDENCY_PATTERN = re.compile(r"([\w\d.-]+)\s*((?:[<>=~]=?|\^)\s*[\d\w.]*)?")
 MINIMUM_DEPENDENCY_PATTERN = re.compile(r".*>=?\s*([\d\w.]+).*")
 
 
