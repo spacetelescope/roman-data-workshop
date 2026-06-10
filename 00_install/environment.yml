@@ -14,17 +14,32 @@ dependencies:
   - photutils >=2.3.0
   - pip
   - pyarrow >= 10.0.1
+<<<<<<< HEAD
+  - python == 3.14
+  - pyyaml >= 6.0
+=======
   - python == 3.11
   - pyyaml >=6.0
   - ipympl
+>>>>>>> d788916 (Updates for B21.)
   - requests >=2.26
   - scipy >=1.14.1
   - pip:
       - asdf_standard >=1.1.0
-      - asdf >= 4.1.0,<6
+      - asdf >= 5.3.1,<6
       - asdf-astropy >=0.8.0
       - astropy >= 6.0
       - crds >=13.0.2
+<<<<<<< HEAD
+      - drizzle >= 2.2,<2.3.0
+      - gwcs >= 1.0.1,<2
+      - stcal >= 1.18.0,<2
+      - stpipe >=0.11.0,<2
+      - roman_datamodels >=1.0
+      - romancal >= 1.0
+      - romanisim >= 0.14,<0.15
+      - spherical_geometry >= 1.4.0,<1.5
+=======
       - drizzle >=2.2.0,<2.3.0
       - gwcs >= 1.0.1,<2
       - rad >=0.30.0,<0.31
@@ -33,6 +48,6 @@ dependencies:
       - romanisim >=0.13.0,<0.14
       - semantic-version >= 2.8
       - spherical_geometry >=1.3.3,<1.4
+>>>>>>> d788916 (Updates for B21.)
       - stsci.imagestats >=1.8.3,<1.9
-      - stcal >=1.17.0,<1.18
       - stpipe >=0.11.0,<0.12.0
