@@ -86,7 +86,7 @@ jobs:
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
-      - run: echo "::set-output name=crds_context::$(crds list --operational-context)"
+      - run: echo "crds_context=$(crds list --operational-context)" >> $GITHUB_OUTPUT
         id: crds_context
       - uses: actions/cache@v4
         with:
