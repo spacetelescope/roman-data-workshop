@@ -30,13 +30,13 @@ jobs:
             ~/conda_pkgs_dir
             /usr/share/miniconda/envs/roman-data-workshop-env
           key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
       - run: python ./00_install/verify_install.py
       - run: conda env export > roman-data-workshop-env-${{ github.sha }}.yml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: roman-data-workshop-env-${{ github.sha }}.yml
           path: roman-data-workshop-env-${{ github.sha }}.yml
@@ -58,7 +58,7 @@ jobs:
             /usr/share/miniconda/envs/roman-data-workshop-env
           key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
         if: steps.data_cache.outputs.cache-hit != 'true'
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
@@ -88,7 +88,7 @@ jobs:
           environment-file: 00_install/environment.yml
       - run: echo "crds_context=$(crds list --operational-context)" >> $GITHUB_OUTPUT
         id: crds_context
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ${{ env.CRDS_PATH }}
           key: crds-jwst-datamodels-${{ steps.crds_context.outputs.crds_context }}
