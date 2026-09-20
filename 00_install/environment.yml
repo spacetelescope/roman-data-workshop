@@ -7,13 +7,13 @@ dependencies:
   - ipympl
   - jsonschema >=4.8
   - lz4 >= 4.3.0
-  - numpy >= 1.26
+  - numpy >= 2.0
   - matplotlib
   - packaging
-  - pandas >= 2.0.0
-  - photutils >=2.3.0
+  - pandas >= 2.2.2
+  - photutils >=3.0,<4
   - pip
-  - pyarrow >= 10.0.1
+  - pyarrow >= 16.0
   - python == 3.14
   - pyyaml >= 6.0
   - requests >=2.26
@@ -22,15 +22,16 @@ dependencies:
       - asdf_standard >=1.1.0
       - asdf >= 5.3.1,<6
       - asdf-astropy >=0.8.0
-      - astropy >= 6.0
-      - crds >=13.0.2
+      - astropy >= 6.1.4,<9
+      - crds >=13.2.7,<15
       - drizzle >= 2.2,<2.3.0
       - gwcs >= 1.0.1,<2
-      - stcal >= 1.18.0,<2
-      - stpipe >=0.11.0,<2
-      - roman_datamodels >=1.0
-      - romancal >= 1.0
+      - pysiaf>=0.13.0
+      - roman_datamodels >=1.1,<1.2
+      - romancal == 1.1.0
       - romanisim >= 0.14,<0.15
       - spherical_geometry >= 1.4.0,<1.5
+      - stcal >= 1.20.0,<2
+      - stpipe >=1.1.0,<3
       - stsci.imagestats >=1.8.3,<1.9
-      - stpipe >=0.11.0,<0.12.0
+      - tweakwcs>=0.9.0
