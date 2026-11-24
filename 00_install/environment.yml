@@ -23,7 +23,7 @@ dependencies:
       - asdf >= 5.3.1,<7
       - asdf-astropy >=0.8.0
       - astropy >= 7.0,<9
-      - astropy-healpix >=1.1.2
+      - astropy_healpix >=1.1.2
       - crds >=13.2.7,<15
       - drizzle >= 3.0.0,<3.1.0
       - gwcs >= 1.0.1,<2
