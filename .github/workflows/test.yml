@@ -36,7 +36,7 @@ jobs:
           environment-file: 00_install/environment.yml
           init-shell: bash
       - run: python ./00_install/verify_install.py
-      - run: conda env export > roman-data-workshop-env-${{ github.sha }}.yml
+      - run: micromamba env export > roman-data-workshop-env-${{ github.sha }}.yml
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: roman-data-workshop-env-${{ github.sha }}.yml
