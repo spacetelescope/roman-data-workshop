@@ -7,36 +7,33 @@ on:
       - '**/*.yml'
       - '**/*.yaml'
       - '**/*.py'
-  pull_request:
-    paths:
-      - '**/*.ipynb'
-      - '**/*.yml'
-      - '**/*.yaml'
-      - '**/*.py'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ inputs.crds_context }}
+  cancel-in-progress: true
+
+permissions: {}
 
 defaults:
   run:
-    shell: bash -l {0}
+    shell: bash -el {0}
 
 jobs:
   build:
     name: build environment
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
-        with:
-          path: |
-            ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/roman-data-workshop-env
-          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-      - uses: mamba-org/setup-micromamba@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: mamba-org/setup-micromamba@f457c30a868e4760d3a6fcea5f25dc655b8edf39 # v3.2.1
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
+          cache-environment: true
+          cache-environment-key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
+          init-shell: bash
       - run: python ./00_install/verify_install.py
-      - run: conda env export > roman-data-workshop-env-${{ github.sha }}.yml
-      - uses: actions/upload-artifact@v7
+      - run: micromamba env export > roman-data-workshop-env-${{ github.sha }}.yml
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: roman-data-workshop-env-${{ github.sha }}.yml
           path: roman-data-workshop-env-${{ github.sha }}.yml
@@ -45,23 +42,19 @@ jobs:
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         id: data_cache
         with:
           path: data/
           key: data-${{ hashFiles('data/download.py') }}
-      - uses: actions/cache@v5
-        with:
-          path: |
-            ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/roman-data-workshop-env
-          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-        if: steps.data_cache.outputs.cache-hit != 'true'
-      - uses: mamba-org/setup-micromamba@v3
+      - uses: mamba-org/setup-micromamba@f457c30a868e4760d3a6fcea5f25dc655b8edf39 # v3.2.1
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
+          cache-environment: true
+          cache-environment-key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
+          init-shell: bash
         if: steps.data_cache.outputs.cache-hit != 'true'
       - run: python data/download.py
         if: steps.data_cache.outputs.cache-hit != 'true'
@@ -75,27 +68,24 @@ jobs:
       CRDS_CLIENT_RETRY_COUNT: 3
       CRDS_CLIENT_RETRY_DELAY_SECONDS: 20
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
-        with:
-          path: |
-            ~/conda_pkgs_dir
-            /usr/share/miniconda/envs/roman-data-workshop-env
-          key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
-      - uses: mamba-org/setup-micromamba@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: mamba-org/setup-micromamba@f457c30a868e4760d3a6fcea5f25dc655b8edf39 # v3.2.1
         with:
           environment-name: roman-data-workshop-env
           environment-file: 00_install/environment.yml
+          cache-environment: true
+          cache-environment-key: conda-${{ runner.os }}-${{ hashFiles('00_install/environment.yml') }}-${{ github.sha }}
+          init-shell: bash
       - run: echo "crds_context=$(crds list --operational-context)" >> $GITHUB_OUTPUT
         id: crds_context
-      - uses: actions/cache@v5
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CRDS_PATH }}
           key: crds-jwst-datamodels-${{ steps.crds_context.outputs.crds_context }}
         if: steps.crds_context.outputs.crds_context != ''
       - run: crds sync --contexts ${{ steps.crds_context.outputs.crds_context }}
         if: steps.crds_context.outputs.crds_context != ''
-      - uses: actions/cache@v5
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: data/
           key: data-${{ hashFiles('data/download.py') }}
