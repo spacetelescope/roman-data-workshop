@@ -7,12 +7,12 @@ on:
       - '**/*.yml'
       - '**/*.yaml'
       - '**/*.py'
-  pull_request:
-    paths:
-      - '**/*.ipynb'
-      - '**/*.yml'
-      - '**/*.yaml'
-      - '**/*.py'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ inputs.crds_context }}
+  cancel-in-progress: true
+
+permissions: {}
 
 defaults:
   run:
